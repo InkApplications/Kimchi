@@ -49,9 +49,9 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Kimchi.add(AdbWriter)
+        Kimchi.add(AdbWriter())
 
-        Kimchi.info("Hello ADB")
+        Kimchi.info("Hello ADB!")
     }
 }
 ```
