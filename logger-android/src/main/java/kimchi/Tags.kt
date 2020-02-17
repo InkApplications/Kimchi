@@ -23,7 +23,6 @@ import kimchi.logger.ThresholdWriter
  */
 internal object Tags {
     private const val MAX_TAG_LENGTH = 23
-    private const val CALL_STACK_INDEX = 2
     private val ANONYMOUS_CLASS = Regex("(\\$\\d+)+$")
     private val DEFAULT_METHOD = Regex("\\\$DefaultImpls\$")
     private val INTERNAL: List<String> = listOf(
@@ -39,15 +38,12 @@ internal object Tags {
 
     fun getStackTag(blacklist: List<String> = emptyList()): String {
         val stackTrace = Throwable().stackTrace
-        if (stackTrace.size <= CALL_STACK_INDEX) {
-            return "Unknown"
-        }
         val element = stackTrace
             .filter { !it.className.contains(ANONYMOUS_CLASS) }
             .filter { !it.className.contains(DEFAULT_METHOD) }
             .filter { it.className !in INTERNAL }
-            .first { it.className !in blacklist }
-        val className = element.className
+            .firstOrNull { it.className !in blacklist }
+        val className = element?.className ?: return "unknown"
         val simpleName = className.substring(className.lastIndexOf('.') + 1)
 
         return if (simpleName.length > MAX_TAG_LENGTH) simpleName.substring(0, MAX_TAG_LENGTH) else simpleName
