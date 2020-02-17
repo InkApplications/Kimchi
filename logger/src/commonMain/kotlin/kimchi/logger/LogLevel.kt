@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * List of logging levels in order of severity.

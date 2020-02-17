@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 class WriterSpy(val write: Boolean = true): LogWriter {
     var log: Triple<LogLevel, String, Throwable?>? = null

@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 import kotlin.test.Test
 import kotlin.test.assertFalse

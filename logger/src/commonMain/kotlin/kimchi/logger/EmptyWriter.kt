@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Do nothing logger.

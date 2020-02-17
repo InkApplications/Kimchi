@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Write logs into a file, output, or service.

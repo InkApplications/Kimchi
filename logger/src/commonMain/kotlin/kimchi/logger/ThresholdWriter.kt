@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Implements a conditional logger by the most common condition of Log Levels.

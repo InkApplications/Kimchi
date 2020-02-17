@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.getAndUpdate

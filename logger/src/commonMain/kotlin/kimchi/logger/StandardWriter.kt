@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Write all logs to Standard I/O on the platform.

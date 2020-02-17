@@ -1,4 +1,10 @@
 package kimchi
+
+import kimchi.logger.CompositeLogWriter
+import kimchi.logger.ConsolidatedLogger
+import kimchi.logger.StatefulWriter
+import kimchi.logger.ThresholdWriter
+
 /*
  * This code is roughly based on code from Jake Wharton's Timber library.
  * sources received from: https://github.com/JakeWharton/timber

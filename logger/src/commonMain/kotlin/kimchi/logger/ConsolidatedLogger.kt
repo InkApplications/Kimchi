@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Fulfils the logger contract by sending logs to a writer.

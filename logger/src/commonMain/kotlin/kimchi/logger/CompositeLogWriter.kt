@@ -1,4 +1,4 @@
-package kimchi
+package kimchi.logger
 
 /**
  * Combine several writers into a single writer.

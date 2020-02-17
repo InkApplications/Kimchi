@@ -1,8 +1,10 @@
 package kimchi
 
 import android.util.Log
-import kimchi.LogLevel.*
+import kimchi.logger.LogLevel.*
 import kimchi.Tags.getStackTag
+import kimchi.logger.LogLevel
+import kimchi.logger.LogWriter
 
 /**
  * Send log messages to Android's ADB Logger.

@@ -1,5 +1,10 @@
 package kimchi
 
+import kimchi.logger.ConsolidatedLogger
+import kimchi.logger.KimchiLogger
+import kimchi.logger.LogWriter
+import kimchi.logger.StatefulWriter
+
 /**
  * Static Logging Facade.
  *
