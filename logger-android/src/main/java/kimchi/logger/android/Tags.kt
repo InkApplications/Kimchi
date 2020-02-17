@@ -1,5 +1,6 @@
-package kimchi
+package kimchi.logger.android
 
+import kimchi.Kimchi
 import kimchi.logger.CompositeLogWriter
 import kimchi.logger.ConsolidatedLogger
 import kimchi.logger.StatefulWriter

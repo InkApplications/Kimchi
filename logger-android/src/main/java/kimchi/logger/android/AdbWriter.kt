@@ -1,8 +1,8 @@
-package kimchi
+package kimchi.logger.android
 
 import android.util.Log
 import kimchi.logger.LogLevel.*
-import kimchi.Tags.getStackTag
+import kimchi.logger.android.Tags.getStackTag
 import kimchi.logger.LogLevel
 import kimchi.logger.LogWriter
 
