@@ -29,6 +29,17 @@ fun main() {
 }
 ```
 
+If generating a log string is expensive, you can lazily generate the log string
+with a lambda, which will not be invoked if the log is disabled:
+
+```kotlin
+fun main() {
+    Kimchi.add(StandardWriter.withThreshold(LogLevel.INFO)
+
+    Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
+}
+```
+
 ### Android
 
 The `logger-android` module provides Android logging to ADB:
