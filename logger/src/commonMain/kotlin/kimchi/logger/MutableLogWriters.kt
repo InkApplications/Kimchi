@@ -6,7 +6,7 @@ import kotlinx.atomicfu.getAndUpdate
 /**
  * Delegate to a collection of loggers that can be modified.
  */
-class StatefulWriter: LogWriter {
+class MutableLogWriters: LogWriter {
     private val delegate = atomic<CompositeLogWriter?>(null)
 
     override fun shouldLog(level: LogLevel, cause: Throwable?): Boolean {

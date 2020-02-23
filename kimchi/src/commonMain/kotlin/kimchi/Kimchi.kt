@@ -3,7 +3,7 @@ package kimchi
 import kimchi.logger.ConsolidatedLogger
 import kimchi.logger.KimchiLogger
 import kimchi.logger.LogWriter
-import kimchi.logger.StatefulWriter
+import kimchi.logger.MutableLogWriters
 
 /**
  * Static Logging Facade.
@@ -17,7 +17,7 @@ import kimchi.logger.StatefulWriter
  *     Kimchi.info("Logs now go to Std Out!")
  */
 object Kimchi: KimchiLogger {
-    private val writer = StatefulWriter()
+    private val writer = MutableLogWriters()
     private val logger = ConsolidatedLogger(writer)
 
     /**
