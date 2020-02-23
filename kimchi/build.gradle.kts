@@ -8,5 +8,6 @@ kotlin {
 
 dependencies {
     commonMainImplementation(kotlin("stdlib"))
+    commonMainApi(project(":analytics"))
     commonMainApi(project(":logger"))
 }
