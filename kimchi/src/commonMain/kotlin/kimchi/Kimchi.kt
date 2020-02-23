@@ -17,7 +17,7 @@ import kimchi.logger.*
  *
  * Add an analytics service with the [addAnalytics] method before using:
  *
- *     Kimchi.addAnalytics(CrashlyticsWriter())
+ *     Kimchi.addAnalytics(GoogleAnalyticsWriter())
  *     Kimchi.trackEvent("App Start")
  */
 object Kimchi: KimchiLogger, KimchiAnalytics {
