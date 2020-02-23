@@ -10,7 +10,7 @@ To use the logger, just add a log writer to determine where to write logs to:
 ```kotlin
 fun main() {
     // Add one or more log writers:
-    Kimchi.add(StandardWriter)
+    Kimchi.addLog(StandardWriter)
 
     // Send Logs:
     Kimchi.info("Hello World")
@@ -34,7 +34,7 @@ with a lambda, which will not be invoked if the log is disabled:
 
 ```kotlin
 fun main() {
-    Kimchi.add(StandardWriter.withThreshold(LogLevel.INFO)
+    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO)
 
     Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
 }
@@ -49,7 +49,7 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Kimchi.add(AdbWriter())
+        Kimchi.addLog(AdbWriter())
 
         Kimchi.info("Hello ADB!")
     }
@@ -64,7 +64,7 @@ To start using analytics, you'll need to add a writer, just like logging:
 ```kotlin
 fun main() {
     // Add one or more analytics writers:
-    Kimchi.add(KimchiLoggerAnalytics) // send analytics events to the logger.
+    Kimchi.addAnalytics(KimchiLoggerAnalytics) // send analytics events to the logger.
 
     // Send Analytics Events:
     Kimchi.trackEvent("Hello Analytics!")
@@ -111,7 +111,7 @@ Properties can also be included in events and screen tracking:
 ```
 fun example() {
     Kimchi.trackEvent(
-        name = "Purchase Complete", 
+        name = "Purchase Complete",
         properties = listOf(
             intProperty("Items", 5),
             stringProperty("State", "CA")
