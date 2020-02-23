@@ -4,10 +4,10 @@ import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class StatefulWriterTest {
+class MutableLogWritersTest {
     @Test
     fun noWriters() {
-        val writer = StatefulWriter()
+        val writer = MutableLogWriters()
 
         val shouldLog = writer.shouldLog(LogLevel.ERROR, Exception())
         writer.log(LogLevel.DEBUG, "Test")
@@ -18,7 +18,7 @@ class StatefulWriterTest {
     @Test
     fun disabledWriter() {
         val spy = WriterSpy(write = false)
-        val writer = StatefulWriter()
+        val writer = MutableLogWriters()
 
         writer.add(spy)
         val shouldLog = writer.shouldLog(LogLevel.WARNING)
@@ -32,7 +32,7 @@ class StatefulWriterTest {
     fun enabledWriter() {
         val disabledSpy = WriterSpy(write = false)
         val enabledSpy = WriterSpy()
-        val writer = StatefulWriter()
+        val writer = MutableLogWriters()
 
         writer.add(disabledSpy)
         writer.add(enabledSpy)
@@ -47,7 +47,7 @@ class StatefulWriterTest {
     @Test
     fun removeLogger() {
         val spy = WriterSpy()
-        val writer = StatefulWriter()
+        val writer = MutableLogWriters()
 
         writer.add(spy)
         writer.remove(spy)
@@ -61,7 +61,7 @@ class StatefulWriterTest {
     @Test
     fun clearLoggers() {
         val spy = WriterSpy()
-        val writer = StatefulWriter()
+        val writer = MutableLogWriters()
 
         writer.add(spy)
         writer.clear()

@@ -19,6 +19,5 @@ subprojects {
     }
     tasks.withType(Test::class) {
         testLogging.exceptionFormat = TestExceptionFormat.FULL
-
     }
 }

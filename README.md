@@ -55,3 +55,67 @@ class MyApplication: Application() {
     }
 }
 ```
+
+## Analytics
+
+Analytics is set up very similar to logging.
+To start using analytics, you'll need to add a writer, just like logging:
+
+```kotlin
+fun main() {
+    // Add one or more analytics writers:
+    Kimchi.add(KimchiLoggerAnalytics) // send analytics events to the logger.
+
+    // Send Analytics Events:
+    Kimchi.trackEvent("Hello Analytics!")
+}
+```
+
+### Properties
+
+Most analytics platforms allow you to set application-wide properties. These
+can be used to describe the application state or user info that persists across
+multiple events.
+
+```kotlin
+fun main() {
+    Kimchi.setProperty(intProperty("age", 25))
+}
+```
+
+Properties can be created for any of the following primitive types:
+
+ - `stringProperty`
+ - `intProperty`
+ - `floatProperty`
+ - `doubleProperty`
+ - `longProperty`
+
+To use custom types, simply create an extension to meet your needs. As long as
+the type can be simplified into one of the primitive types supported by
+analytics platforms, it can be recorded. For example:
+
+```kotlin
+/**
+ * Create a property from a Java time Instant
+ */
+fun timestampProperty(name: String, time: Instant) = longProperty(name, time.toEpochMilli())
+
+fun example() {
+    Kimchi.setProperty(timestampProperty("Start Time", Instant.now()))
+}
+```
+
+Properties can also be included in events and screen tracking:
+
+```
+fun example() {
+    Kimchi.trackEvent(
+        name = "Purchase Complete", 
+        properties = listOf(
+            intProperty("Items", 5),
+            stringProperty("State", "CA")
+        )
+    )
+}
+```

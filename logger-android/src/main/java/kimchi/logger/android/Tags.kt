@@ -3,7 +3,7 @@ package kimchi.logger.android
 import kimchi.Kimchi
 import kimchi.logger.CompositeLogWriter
 import kimchi.logger.ConsolidatedLogger
-import kimchi.logger.StatefulWriter
+import kimchi.logger.MutableLogWriters
 import kimchi.logger.ThresholdWriter
 
 /*
@@ -32,7 +32,7 @@ internal object Tags {
             Kimchi::class.java,
             CompositeLogWriter::class.java,
             ConsolidatedLogger::class.java,
-            StatefulWriter::class.java,
+            MutableLogWriters::class.java,
             ThresholdWriter::class.java
         )
         .map { it.name }
