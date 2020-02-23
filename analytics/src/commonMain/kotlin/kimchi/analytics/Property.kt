@@ -14,7 +14,7 @@ package kimchi.analytics
  * @see longProperty Static method to create a property from an Long
  * @see stringProperty Static method to create a property from an String
  */
-sealed class Property<T: Any> {
+sealed class Property<out T: Any> {
     /**
      * Identifier unique to the property.
      */

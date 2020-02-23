@@ -31,4 +31,3 @@ interface AnalyticsWriter {
     fun writeScreen(name: String, properties: List<Property<Any>>)
 }
 
-
