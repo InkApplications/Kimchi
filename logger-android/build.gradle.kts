@@ -1,7 +1,15 @@
+import com.android.build.gradle.internal.scope.publishArtifactToConfiguration
+
 plugins {
     id("com.android.library")
-    kotlin("android")
-    id("com.github.dcendents.android-maven")
+    kotlin("multiplatform")
+    id("maven-publish")
+}
+
+kotlin {
+    android {
+        publishLibraryVariants("release", "debug")
+    }
 }
 
 android {

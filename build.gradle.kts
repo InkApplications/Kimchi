@@ -9,7 +9,6 @@ buildscript {
         classpath(kotlin("gradle-plugin", version = "1.3.61"))
         classpath(atomicFu("gradle-plugin"))
         classpath("com.android.tools.build:gradle:3.5.2")
-        classpath("com.github.dcendents:android-maven-gradle-plugin:2.1")
     }
 }
 
