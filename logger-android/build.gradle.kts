@@ -9,6 +9,9 @@ plugins {
 kotlin {
     android {
         publishLibraryVariants("release", "debug")
+        mavenPublication {
+            artifactId = "logger-android"
+        }
     }
 }
 
