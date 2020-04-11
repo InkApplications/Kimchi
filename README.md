@@ -34,7 +34,7 @@ with a lambda, which will not be invoked if the log is disabled:
 
 ```kotlin
 fun main() {
-    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO)
+    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO))
 
     Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
 }
