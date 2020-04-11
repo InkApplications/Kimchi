@@ -1,11 +1,15 @@
-import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-fun DependencyHandlerScope.atomicFu(
-    module: String = "common",
-    version: String = "0.14.1"
-) = "org.jetbrains.kotlinx:atomicfu-$module:$version"
+object AtomicFU {
+    const val version = "0.14.1"
+    const val group = "org.jetbrains.kotlinx"
 
-fun DependencyHandlerScope.jUnit(
-    module: String = "junit",
-    version: String = "4.12"
-) = "junit:$module:$version"
+    const val plugin = "$group:atomicfu-gradle-plugin:$version"
+    const val common = "$group:atomicfu-common:$version"
+}
+
+object JUnit {
+    const val version = "4.12"
+    const val group = "junit"
+
+    const val runtime = "$group:junit:$version"
+}

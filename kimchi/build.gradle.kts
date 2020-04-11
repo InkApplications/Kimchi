@@ -5,11 +5,28 @@ plugins {
 
 kotlin {
     jvm()
-}
+    js()
 
-dependencies {
-    commonMainImplementation(kotlin("stdlib"))
-    commonMainApi(project(":analytics"))
-    commonMainApi(project(":logger"))
-    commonMainImplementation(project(":analytics-logger"))
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-common"))
+                api(project(":analytics"))
+                api(project(":logger"))
+                implementation(project(":analytics-logger"))
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-js"))
+            }
+        }
+    }
 }

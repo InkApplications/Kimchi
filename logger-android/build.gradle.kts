@@ -1,18 +1,7 @@
-import com.android.build.gradle.internal.scope.publishArtifactToConfiguration
-
 plugins {
     id("com.android.library")
-    kotlin("multiplatform")
+    kotlin("android")
     id("maven-publish")
-}
-
-kotlin {
-    android {
-        publishLibraryVariants("release", "debug")
-        mavenPublication {
-            artifactId = "logger-android"
-        }
-    }
 }
 
 android {
@@ -23,7 +12,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     api(project(":kimchi"))
 
-    testImplementation(jUnit())
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation(JUnit.runtime)
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
 }

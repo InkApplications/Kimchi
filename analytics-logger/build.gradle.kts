@@ -5,14 +5,35 @@ plugins {
 
 kotlin {
     jvm()
-}
+    js()
 
-dependencies {
-    commonMainImplementation(kotlin("stdlib"))
-    commonMainApi(project(":analytics"))
-    commonMainImplementation(project(":logger"))
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-common"))
+                api(project(":analytics"))
+                implementation(project(":logger"))
+            }
+        }
 
-    commonTestImplementation(jUnit())
-    commonTestImplementation("org.jetbrains.kotlin:kotlin-test")
-    commonTestImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit"))
+                implementation(JUnit.runtime)
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-js"))
+            }
+        }
+    }
 }
