@@ -1,11 +1,11 @@
 Kimchi
 ======
 
-Kimchi is a multi-platform logging and analytics tool written in Kotlin.
+Kimchi is a multiplatform logging and analytics tool written in Kotlin.
 
 ## Logging
 
-To use the logger, just add a log writer to determine where to write logs to:
+Start logging by adding a writer and sending logs:
 
 ```kotlin
 fun main() {
@@ -17,32 +17,9 @@ fun main() {
 }
 ```
 
-You can filter logs by level using a Threshold:
-
-```kotlin
-fun main() {
-    Kimchi.add(StandardWriter.withThreshold(LogLevel.INFO))
-
-    // Logs lower than the threshold will not show up:
-    Kimchi.trace("This log is filtered")
-    Kimchi.info("This log still shows!")
-}
-```
-
-If generating a log string is expensive, you can lazily generate the log string
-with a lambda, which will not be invoked if the log is disabled:
-
-```kotlin
-fun main() {
-    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO))
-
-    Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
-}
-```
-
 ### Android
 
-The `logger-android` module provides Android logging to ADB:
+Built-in Android Logging:
 
 ```kotlin
 class MyApplication: Application() {
@@ -58,8 +35,8 @@ class MyApplication: Application() {
 
 ## Analytics
 
-Analytics is set up very similar to logging.
-To start using analytics, you'll need to add a writer, just like logging:
+Analytics is as easy as logging!
+Just like the logger, just add a writer and start tracking events:
 
 ```kotlin
 fun main() {
@@ -71,51 +48,23 @@ fun main() {
 }
 ```
 
-### Properties
+## Installation
 
-Most analytics platforms allow you to set application-wide properties. These
-can be used to describe the application state or user info that persists across
-multiple events.
+Requires the JitPack repository:
 
-```kotlin
-fun main() {
-    Kimchi.setProperty(intProperty("age", 25))
+```gradle
+repositories {
+    maven { url "https://jitpack.io" }
 }
 ```
 
-Properties can be created for any of the following primitive types:
+```gradle
+compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact version
 
- - `stringProperty`
- - `intProperty`
- - `floatProperty`
- - `doubleProperty`
- - `longProperty`
-
-To use custom types, simply create an extension to meet your needs. As long as
-the type can be simplified into one of the primitive types supported by
-analytics platforms, it can be recorded. For example:
-
-```kotlin
-/**
- * Create a property from a Java time Instant
- */
-fun timestampProperty(name: String, time: Instant) = longProperty(name, time.toEpochMilli())
-
-fun example() {
-    Kimchi.setProperty(timestampProperty("Start Time", Instant.now()))
-}
+// Android Logger:
+compile "com.github.Inkapplications.kimchi:logger-android:+" // Replace with exact version
 ```
 
-Properties can also be included in events and screen tracking:
+## Documentation
 
-```
-fun example() {
-    Kimchi.trackEvent(
-        name = "Purchase Complete",
-        properties = listOf(
-            intProperty("Items", 5),
-            stringProperty("State", "CA")
-        )
-    )
-}
-```
+For more examples and documentation please see [the website](https://kimchi.inkapplications.com)

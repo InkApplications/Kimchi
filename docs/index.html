@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kimchi</title>
+    <link rel="stylesheet" href="https://assets.inkapplications.com/css/main-v1.css" type="text/css" media="all" />
+    <style>
+        :root { --color-accent: #F0635E; }
+    </style>
+    <script src="https://assets.inkapplications.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class="content-break">
+    <header>
+        <h1>Kimchi</h1>
+        <p>
+            Multiplatform logging and analytics tool written in Kotlin.
+        </p>
+        <ul>
+            <li>Supports JavaScript, JVM, and Android</li>
+            <li><a href="https://github.com/InkApplications/kimchi">GitHub</a></li>
+        </ul>
+    </header>
+    <section>
+        <h1>Installation</h1>
+        <p>
+            If you haven’t already, add JitPack to your gradle repositories
+             in your build.gradle file:
+        </p>
+<pre><code>
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+</code></pre>
+
+    <p>Next, add the main Kimchi dependency:</p>
+<pre><code>
+compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact version
+
+</code></pre>
+        <h2>Android</h2>
+        <p>If you're on Android, you may want to add the Android-specific logger:</p>
+<pre><code>
+compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact version
+compile "com.github.Inkapplications.kimchi:logger-android:+" // Replace with exact version
+        
+</code></pre>
+    </section>
+    <section>
+        <h1>Logging</h1>
+        <p>To use the logger, just add a log writer to determine where to write logs to:</p>
+<pre><code class="kotlin">
+fun main() {
+    // Add one or more log writers:
+    Kimchi.addLog(StandardWriter)
+
+    // Send Logs:
+    Kimchi.info("Hello World")
+}
+
+</code></pre>
+        <p>
+            <code>StandardWriter</code> will print logs to the standard 
+            output console for the platform. 
+        </p>
+        <p>
+            You can add as many log writers as you'd like! Use a built-in,
+            such as Android's <code>AdbWriter</code>, or write your own.
+        </p>
+        <h2>Filter Logs</h2>
+        <p>
+            You can easily filter out logs of a certain level by 
+            using <code>withThreshold</code>:
+        </p>
+<pre><code class="kotlin">
+fun main() {
+    Kimchi.add(StandardWriter.withThreshold(LogLevel.INFO))
+
+    // Logs lower than the threshold will not show up:
+    Kimchi.trace("This log is filtered")
+    Kimchi.info("This log still shows!")
+}
+
+</code></pre>
+        <h2>Lazy Logs</h2>
+        <p>
+            If generating a log string is expensive, you can lazily 
+            generate the log string with a lambda, which will not 
+            be invoked if the log is disabled:
+        </p>
+<pre><code class="kotlin">
+fun main() {
+    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO))
+
+    Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
+}
+</code></pre>
+    </section>
+    <section>
+        <h1>Analytics</h1>
+        <p>
+            Analytics is set up very similar to logging. To start using
+            analytics, you'll need to add a writer, just like logging:
+        </p>
+<pre><code class="kotlin">
+fun main() {
+    // Add one or more analytics writers:
+    Kimchi.addAnalytics(KimchiLoggerAnalytics) // send analytics events to the logger.
+
+    // Send Analytics Events:
+    Kimchi.trackEvent("Hello Analytics!")
+}
+
+</code></pre>
+        <p>
+            Just like logging, you can implement the <code>AnalyticsWriter</code>
+            interface to add any analytics platform your app is using.
+        </p>
+        <h2>Properties</h2>
+        <p>
+            Most analytics platforms allow you to set application-wide 
+            properties. These can be used to describe the application 
+            state or user info that persists across multiple events.
+        </p>
+<pre><code class="kotlin">
+fun main() {
+    Kimchi.setProperty(intProperty("age", 25))
+}
+
+</code></pre>
+        <p>Properties can be created for any of the following primitive types:</p>
+        <ul>
+            <li><code>stringProperty</code></li>
+            <li><code>intProperty</code></li>
+            <li><code>floatProperty</code></li>
+            <li><code>doubleProperty</code></li>
+            <li><code>longProperty</code></li>
+        </ul>
+    </section>
+    <p>
+        Properties can also be included in events and screen tracking:
+    </p>
+<pre><code class="kotlin">
+fun example() {
+    Kimchi.trackEvent(
+        name = "Purchase Complete",
+        properties = listOf(
+            intProperty("Items", 5),
+            stringProperty("State", "CA")
+        )
+    )
+}
+
+</code></pre>
+</body>
+</html>
