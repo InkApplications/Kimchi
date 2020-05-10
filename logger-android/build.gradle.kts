@@ -9,7 +9,7 @@ kotlin {
         publishAllLibraryVariants()
         publishLibraryVariantsGroupedByFlavor = true
         mavenPublication {
-            artifactId = "slogger-android"
+            artifactId = "logger-android"
         }
     }
 }
