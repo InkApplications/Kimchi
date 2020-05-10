@@ -6,9 +6,9 @@ buildscript {
         google()
     }
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.3.61"))
+        classpath(kotlin("gradle-plugin", version = "1.3.72"))
         classpath(AtomicFU.plugin)
-        classpath("com.android.tools.build:gradle:3.5.2")
+        classpath("com.android.tools.build:gradle:3.6.3")
     }
 }
 
