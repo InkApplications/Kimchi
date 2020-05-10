@@ -1,14 +1,15 @@
 plugins {
-    id("com.android.library")
     kotlin("multiplatform")
+    id("com.android.library")
     id("maven-publish")
 }
 
 kotlin {
     android {
-        publishLibraryVariants("release", "debug")
+        publishAllLibraryVariants()
+        publishLibraryVariantsGroupedByFlavor = true
         mavenPublication {
-            artifactId = "logger-android"
+            artifactId = "slogger-android"
         }
     }
 }
