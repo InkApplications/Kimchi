@@ -10,26 +10,10 @@ Start logging by adding a writer and sending logs:
 ```kotlin
 fun main() {
     // Add one or more log writers:
-    Kimchi.addLog(StandardWriter)
+    Kimchi.addLog(defaultWriter)
 
     // Send Logs:
     Kimchi.info("Hello World")
-}
-```
-
-### Android
-
-Built-in Android Logging:
-
-```kotlin
-class MyApplication: Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        Kimchi.addLog(AdbWriter())
-
-        Kimchi.info("Hello ADB!")
-    }
 }
 ```
 

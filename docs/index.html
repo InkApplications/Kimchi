@@ -55,7 +55,7 @@ compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact versi
 <pre><code class="kotlin">
 fun main() {
     // Add one or more log writers:
-    Kimchi.addLog(StandardWriter)
+    Kimchi.addLog(defaultWriter)
 
     // Send Logs:
     Kimchi.info("Hello World")
@@ -63,12 +63,25 @@ fun main() {
 
 </code></pre>
         <p>
+            <code>defaultWriter</code> will select the most applicable default
+            for the current platform.
+        </p>
+        <p>
             <code>StandardWriter</code> will print logs to the standard 
             output console for the platform. 
         </p>
         <p>
-            You can add as many log writers as you'd like! Use a built-in,
-            such as Android's <code>AdbWriter</code>, or write your own.
+            On Android Platforms, <code>AdbWriter</code> will print logs to
+            ADB.
+        </p>
+        <p>
+            On Javascript Platforms, <code>ConsoleWriter</code> will print logs
+            to the javascript console object.
+        </p>
+        <p>
+            You can add as many log writers as you'd like.
+            Use these built-in writers, or write your own by extending
+            <code>LogWriter</code>
         </p>
         <h2>Filter Logs</h2>
         <p>
@@ -77,7 +90,7 @@ fun main() {
         </p>
 <pre><code class="kotlin">
 fun main() {
-    Kimchi.add(StandardWriter.withThreshold(LogLevel.INFO))
+    Kimchi.add(defaultWriter.withThreshold(LogLevel.INFO))
 
     // Logs lower than the threshold will not show up:
     Kimchi.trace("This log is filtered")
@@ -93,7 +106,7 @@ fun main() {
         </p>
 <pre><code class="kotlin">
 fun main() {
-    Kimchi.addLog(StandardWriter.withThreshold(LogLevel.INFO))
+    Kimchi.addLog(defaultWriter.withThreshold(LogLevel.INFO))
 
     Kimchi.debug { "Getting this log could be expensive: ${getExpensiveInfo()}" }
 }
