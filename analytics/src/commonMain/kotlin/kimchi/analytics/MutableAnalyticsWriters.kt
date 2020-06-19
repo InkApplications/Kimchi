@@ -1,10 +1,9 @@
 package kimchi.analytics
 
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.getAndUpdate
+import subatomic.Atomic
 
 class MutableAnalyticsWriters: AnalyticsWriter {
-    private val delegate = atomic<CompositeAnalyticsWriter?>(null)
+    private val delegate = Atomic<CompositeAnalyticsWriter?>(null)
 
     override fun writeProperties(properties: List<Property<Any>>) {
         delegate.value?.writeProperties(properties)

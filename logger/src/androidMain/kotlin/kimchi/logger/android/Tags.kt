@@ -1,6 +1,5 @@
 package kimchi.logger.android
 
-import kimchi.Kimchi
 import kimchi.logger.CompositeLogWriter
 import kimchi.logger.ConsolidatedLogger
 import kimchi.logger.MutableLogWriters
@@ -29,7 +28,6 @@ internal object Tags {
     private val INTERNAL: List<String> = listOf(
             Tags::class.java,
             AdbWriter::class.java,
-            Kimchi::class.java,
             CompositeLogWriter::class.java,
             ConsolidatedLogger::class.java,
             MutableLogWriters::class.java,
@@ -43,6 +41,7 @@ internal object Tags {
             .filter { !it.className.contains(ANONYMOUS_CLASS) }
             .filter { !it.className.contains(DEFAULT_METHOD) }
             .filter { it.className !in INTERNAL }
+            .filter { it.className == "kimchi.Kimchi" }
             .firstOrNull { it.className !in blacklist }
         val className = element?.className ?: return "unknown"
         val simpleName = className.substring(className.lastIndexOf('.') + 1)

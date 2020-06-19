@@ -1,9 +1,8 @@
+object Subatomic {
+    const val version = "0.0.1"
+    const val group = "com.github.inkapplications.subatomic"
 
-object AtomicFU {
-    const val version = "0.14.2"
-    const val group = "org.jetbrains.kotlinx"
-
-    const val plugin = "$group:atomicfu-gradle-plugin:$version"
+    const val core = "$group:core:$version"
 }
 
 object JUnit {

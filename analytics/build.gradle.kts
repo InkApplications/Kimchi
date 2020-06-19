@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    id("kotlinx-atomicfu")
     id("maven-publish")
 }
 
@@ -12,6 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
+                implementation(Subatomic.core)
             }
         }
 

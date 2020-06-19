@@ -7,7 +7,6 @@ buildscript {
     }
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.3.72"))
-        classpath(AtomicFU.plugin)
         classpath("com.android.tools.build:gradle:3.6.3")
     }
 }
@@ -19,6 +18,7 @@ subprojects {
     repositories {
         jcenter()
         google()
+        maven(url = "https://jitpack.io")
     }
     tasks.withType(Test::class) {
         testLogging.exceptionFormat = TestExceptionFormat.FULL

@@ -1,17 +1,26 @@
 plugins {
     kotlin("multiplatform")
-    id("kotlinx-atomicfu")
+    id( "com.android.library")
     id("maven-publish")
+}
+
+android {
+    compileSdkVersion(16)
 }
 
 kotlin {
     jvm()
+    android {
+        publishAllLibraryVariants()
+        publishLibraryVariantsGroupedByFlavor = true
+    }
     js()
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
+                implementation(Subatomic.core)
             }
         }
 
@@ -20,6 +29,13 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
                 implementation(JUnit.runtime)
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+                implementation(Subatomic.core)
             }
         }
 
