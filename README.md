@@ -60,9 +60,6 @@ repositories {
 
 ```gradle
 compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact version
-
-// Android Logger:
-compile "com.github.Inkapplications.kimchi:logger-android:+" // Replace with exact version
 ```
 
 ## Documentation
