@@ -1,5 +1,5 @@
 object Subatomic {
-    const val version = "0.0.1"
+    const val version = "1.0.0"
     const val group = "com.github.inkapplications.subatomic"
 
     const val core = "$group:core:$version"
