@@ -16,6 +16,6 @@ object ConsoleWriter: LogWriter {
             WARNING -> console.warn(message)
             ERROR -> console.error(message)
         }
-        cause?.run(console::log)
+        cause?.run { console.log(this) }
     }
 }
