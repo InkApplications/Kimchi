@@ -56,22 +56,24 @@ fun main() {
 }
 
 </code></pre>
-        <p>
-            <code>defaultWriter</code> will select the most applicable default
-            for the current platform.
-        </p>
-        <p>
-            <code>StandardWriter</code> will print logs to the standard 
-            output console for the platform. 
-        </p>
-        <p>
-            On Android Platforms, <code>AdbWriter</code> will print logs to
-            ADB.
-        </p>
-        <p>
-            On Javascript Platforms, <code>ConsoleWriter</code> will print logs
-            to the javascript console object.
-        </p>
+        <ul>
+            <li>
+                <code>defaultWriter</code> will select the most applicable default
+                for the current platform.
+            </li>
+            <li>
+                <code>StandardWriter</code> will print logs to the standard
+                output console for the platform.
+            </li>
+            <p>
+                On Android Platforms, <code>AdbWriter</code> will print logs to
+                ADB.
+            </p>
+            <li>
+                On Javascript Platforms, <code>ConsoleWriter</code> will print logs
+                to the javascript console object.
+            </li>
+        </ul>
         <p>
             You can add as many log writers as you'd like.
             Use these built-in writers, or write your own by extending
@@ -79,7 +81,7 @@ fun main() {
         </p>
         <h2>Filter Logs</h2>
         <p>
-            You can easily filter out logs of a certain level by 
+            You can easily filter out logs of a certain level by
             using <code>withThreshold</code>:
         </p>
 <pre><code class="kotlin">
