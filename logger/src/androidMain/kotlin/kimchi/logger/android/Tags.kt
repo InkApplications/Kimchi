@@ -41,7 +41,7 @@ internal object Tags {
             .filter { !it.className.contains(ANONYMOUS_CLASS) }
             .filter { !it.className.contains(DEFAULT_METHOD) }
             .filter { it.className !in INTERNAL }
-            .filter { it.className == "kimchi.Kimchi" }
+            .filter { it.className != "kimchi.Kimchi" }
             .firstOrNull { it.className !in blacklist }
         val className = element?.className ?: return "unknown"
         val simpleName = className.substring(className.lastIndexOf('.') + 1)
