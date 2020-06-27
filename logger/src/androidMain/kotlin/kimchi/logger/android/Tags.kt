@@ -23,7 +23,7 @@ import kimchi.logger.ThresholdWriter
  */
 internal object Tags {
     private const val MAX_TAG_LENGTH = 23
-    private val ANONYMOUS_CLASS = Regex("(\\$\\d+)+$")
+    private val ANONYMOUS_CLASS = Regex("\\$.+")
     private val DEFAULT_METHOD = Regex("\\\$DefaultImpls\$")
     private val INTERNAL: List<String> = listOf(
             Tags::class.java,
@@ -38,13 +38,18 @@ internal object Tags {
     fun getStackTag(blacklist: List<String> = emptyList()): String {
         val stackTrace = Throwable().stackTrace
         val element = stackTrace
-            .filter { !it.className.contains(ANONYMOUS_CLASS) }
+                .also { it.forEach { println("before: $it") } }
             .filter { !it.className.contains(DEFAULT_METHOD) }
             .filter { it.className !in INTERNAL }
             .filter { it.className != "kimchi.Kimchi" }
+                .also { it.forEach { println("after: $it") } }
             .firstOrNull { it.className !in blacklist }
         val className = element?.className ?: return "unknown"
-        val simpleName = className.substring(className.lastIndexOf('.') + 1)
+        val simpleName = if (className.contains('$')) {
+            className.substring(className.lastIndexOf('.') + 1, className.indexOf('$'))
+        } else {
+            className.substring(className.lastIndexOf('.') + 1)
+        }
 
         return if (simpleName.length > MAX_TAG_LENGTH) simpleName.substring(0, MAX_TAG_LENGTH) else simpleName
     }
