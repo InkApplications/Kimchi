@@ -38,11 +38,9 @@ internal object Tags {
     fun getStackTag(blacklist: List<String> = emptyList()): String {
         val stackTrace = Throwable().stackTrace
         val element = stackTrace
-                .also { it.forEach { println("before: $it") } }
             .filter { !it.className.contains(DEFAULT_METHOD) }
             .filter { it.className !in INTERNAL }
             .filter { it.className != "kimchi.Kimchi" }
-                .also { it.forEach { println("after: $it") } }
             .firstOrNull { it.className !in blacklist }
         val className = element?.className ?: return "unknown"
         val simpleName = if (className.contains('$')) {

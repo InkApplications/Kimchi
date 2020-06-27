@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+1.0.2
+-----
+
+ - Remove Excess Logs in Android platforms
+
 1.0.1
 -----
 
