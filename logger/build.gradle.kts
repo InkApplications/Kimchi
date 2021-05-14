@@ -19,35 +19,21 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
-                implementation(Subatomic.core)
+                implementation(libs.subatomic)
             }
         }
 
-        val commonTest by getting {
+        val jvmTest by getting {
             dependencies {
-                implementation(kotlin("test"))
-                implementation(kotlin("test-junit"))
-                implementation(JUnit.runtime)
+                implementation(libs.kotlin.test.core)
+                implementation(libs.kotlin.test.junit)
             }
         }
 
-        val androidMain by getting {
+        val androidTest by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-                implementation(Subatomic.core)
-            }
-        }
-
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-            }
-        }
-
-        val jsMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-js"))
+                implementation(libs.kotlin.test.core)
+                implementation(libs.kotlin.test.junit)
             }
         }
     }

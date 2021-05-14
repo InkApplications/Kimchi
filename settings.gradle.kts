@@ -1,4 +1,9 @@
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "kimchi"
+
 include("analytics")
 include("analytics-logger")
-include("kimchi")
+include("core")
 include("logger")
