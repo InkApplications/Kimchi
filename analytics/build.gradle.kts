@@ -1,12 +1,9 @@
 plugins {
-    kotlin("multiplatform")
-    id("maven-publish")
+    id("ink.multiplatform")
+    id("ink.publishing")
 }
 
 kotlin {
-    jvm()
-    js()
-
     sourceSets {
         val commonMain by getting {
             dependencies {

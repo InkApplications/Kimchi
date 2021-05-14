@@ -1,31 +1,15 @@
 plugins {
-    kotlin("multiplatform")
-    id("maven-publish")
+    id("ink.multiplatform")
+    id("ink.publishing")
 }
 
 kotlin {
-    jvm()
-    js()
-
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
-                api(project(":analytics"))
-                api(project(":logger"))
-                implementation(project(":analytics-logger"))
-            }
-        }
-
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-            }
-        }
-
-        val jsMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-js"))
+                api(projects.analytics)
+                api(projects.logger)
+                implementation(projects.analyticsLogger)
             }
         }
     }

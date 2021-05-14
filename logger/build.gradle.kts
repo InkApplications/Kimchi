@@ -1,20 +1,23 @@
 plugins {
-    kotlin("multiplatform")
+    id("ink.multiplatform")
+    id("ink.publishing")
     id( "com.android.library")
-    id("maven-publish")
 }
 
 android {
-    compileSdkVersion(16)
+    compileSdkVersion(29)
+    lintOptions {
+        tasks.lint {
+            enabled = false
+        }
+    }
 }
 
 kotlin {
-    jvm()
     android {
         publishAllLibraryVariants()
         publishLibraryVariantsGroupedByFlavor = true
     }
-    js()
 
     sourceSets {
         val commonMain by getting {
