@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+1.1.0
+-----
+ - Update to Kotlin 1.4
+ - Rename `kimchi` module to `core`
+
 1.0.2
 -----
 
