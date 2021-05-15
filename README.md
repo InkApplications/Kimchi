@@ -3,6 +3,14 @@ Kimchi
 
 Kimchi is a multiplatform logging and analytics tool written in Kotlin.
 
+## Installation
+
+Published to Maven Central
+
+### Maven Coordinates
+
+`com.inkapplications.kimchi:core`
+
 ## Logging
 
 Start logging by adding a writer and sending logs:
@@ -30,20 +38,6 @@ fun main() {
     // Send Analytics Events:
     Kimchi.trackEvent("Hello Analytics!")
 }
-```
-
-## Installation
-
-Requires the JitPack repository:
-
-```gradle
-repositories {
-    maven { url "https://jitpack.io" }
-}
-```
-
-```gradle
-compile "com.github.Inkapplications.kimchi:kimchi:+" // Replace with exact version
 ```
 
 ## Documentation
