@@ -1,0 +1,104 @@
+name: Release
+on:
+  push:
+    tags: ['*']
+env:
+    GITHUB_TAG: ${{ github.ref }}
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: JVM Tests
+                run: ./gradlew jvmTest
+    common:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: Build Metadata Publication
+                run: ./gradlew publishKotlinMultiplatformPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Build JVM Publication
+                run: ./gradlew publishJvmPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Build JS Publication
+                run: ./gradlew publishJsPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Zip All Publications
+                run: ./gradlew zipPublications
+            -
+                name: Archive
+                uses: actions/upload-artifact@v2
+                with:
+                    name: Common Publications
+                    path: build/distributions/publications.zip
+    linux:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: Build Linux x64 Publication
+                run: ./gradlew publishLinuxX64PublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Build Linux Mips 32 Publication
+                run: ./gradlew publishLinuxMips32PublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Build Linux ARM Publication
+                run: ./gradlew publishLinuxArm32HfpPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Build Linux ARM64 Publication
+                run: ./gradlew publishLinuxArm64PublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Zip All Publications
+                run: ./gradlew zipPublications
+            -
+                name: Archive
+                uses: actions/upload-artifact@v2
+                with:
+                    name: Linux Publications
+                    path: build/distributions/publications.zip
+    windows:
+        runs-on: windows-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: Build Windows X64 Publication
+                run: ./gradlew publishMingwX64PublicationToBuildRepository --project-prop version=${GITHUB_TAG/refs\/tags\//}
+                shell: bash
+            -
+                name: Zip All Publications
+                run: ./gradlew zipPublications
+            -
+                name: Archive
+                uses: actions/upload-artifact@v2
+                with:
+                    name: Windows Publications
+                    path: build/distributions/publications.zip
+    macos:
+        runs-on: macos-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: Build MacOS X64 Publication
+                run: ./gradlew publishMacosX64PublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
+                name: Zip All Publications
+                run: ./gradlew zipPublications
+            -
+                name: Archive
+                uses: actions/upload-artifact@v2
+                with:
+                    name: MacOS Publications
+                    path: build/distributions/publications.zip

@@ -1,0 +1,12 @@
+name: PR Checks
+on: [pull_request]
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Checkout
+                uses: actions/checkout@v2.3.4
+            -
+                name: JVM Tests
+                run: ./gradlew jvmTest
