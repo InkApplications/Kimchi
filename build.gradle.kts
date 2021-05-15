@@ -4,7 +4,6 @@ subprojects {
     repositories {
         mavenCentral()
         google()
-        maven(url = "https://jitpack.io")
     }
     tasks.withType(Test::class) {
         testLogging.exceptionFormat = TestExceptionFormat.FULL
