@@ -1,7 +1,7 @@
 plugins {
     id("ink.multiplatform")
-    id("com.inkapplications.publishing")
     id( "com.android.library")
+    id("com.inkapplications.publishing")
 }
 
 android {
