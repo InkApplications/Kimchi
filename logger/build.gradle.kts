@@ -22,7 +22,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.subatomic)
+                implementation(libs.coroutines.core)
             }
         }
 

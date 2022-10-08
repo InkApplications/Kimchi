@@ -1,12 +1,13 @@
 package kimchi.logger
 
-import subatomic.Atomic
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.getAndUpdate
 
 /**
  * Delegate to a collection of loggers that can be modified.
  */
 class MutableLogWriters: LogWriter {
-    private val delegate = Atomic<CompositeLogWriter?>(null)
+    private val delegate = MutableStateFlow<CompositeLogWriter?>(null)
 
     override fun shouldLog(level: LogLevel, cause: Throwable?): Boolean {
         return delegate.value?.shouldLog(level, cause) ?: false

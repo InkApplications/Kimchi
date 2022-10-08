@@ -1,9 +1,10 @@
 package kimchi.analytics
 
-import subatomic.Atomic
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.getAndUpdate
 
 class MutableAnalyticsWriters: AnalyticsWriter {
-    private val delegate = Atomic<CompositeAnalyticsWriter?>(null)
+    private val delegate = MutableStateFlow<CompositeAnalyticsWriter?>(null)
 
     override fun writeProperties(properties: List<Property<Any>>) {
         delegate.value?.writeProperties(properties)

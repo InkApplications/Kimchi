@@ -10,6 +10,10 @@ subprojects {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 tasks.create("zipPublications", Zip::class) {
     from("analytics/build/repo/")
     from("analytics-logger/build/repo/")
