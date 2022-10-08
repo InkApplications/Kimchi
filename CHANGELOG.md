@@ -12,6 +12,7 @@ to support an internal dependency change to using KotlinX Coroutines.
  - Updated to Kotlin 1.7
  - Updated Supported Platforms:
      - jvm
+     - android
      - iOS:
         - iosArm32
         - iosArm64
