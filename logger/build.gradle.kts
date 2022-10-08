@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(33)
     lintOptions {
         tasks.lint {
             enabled = false
