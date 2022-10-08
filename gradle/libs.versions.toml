@@ -21,3 +21,7 @@ module = "org.jetbrains.kotlin:kotlin-test-junit"
 [libraries.android-gradle]
 version = "7.3.0"
 module = "com.android.tools.build:gradle"
+
+[libraries.ink-publishing]
+version = "1.0.0"
+module = "com.inkapplications.publishing:ink-publishing"

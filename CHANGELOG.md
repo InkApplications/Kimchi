@@ -1,6 +1,40 @@
 Change Log
 ==========
 
+2.0.0
+-----
+
+This major release is because the platform list has changed. The list of
+supported platforms has expanded, however some linux platforms were removed
+to support an internal dependency change to using KotlinX Coroutines.
+
+# Changed
+ - Updated to Kotlin 1.7
+ - Updated Supported Platforms:
+     - jvm
+     - iOS:
+        - iosArm32
+        - iosArm64
+        - iosX64
+        - iosSimulatorArm64
+     - WatchOS:
+        - watchosArm32
+        - watchosArm64
+        - watchosX86
+        - watchosX64
+        - watchosSimulatorArm64
+    - tvOS:
+        - tvosArm64
+        - tvosX64
+        - tvosSimulatorArm64
+    - MacOS:
+        - macosX64
+        - macosArm64
+    - Linux:
+        - linuxX64
+    - Windows:
+        - mingwX64
+
 1.1.0
 -----
 
