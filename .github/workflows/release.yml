@@ -40,7 +40,7 @@ jobs:
                 run: ./gradlew publishJvmPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
             -
                 name: Build Android Publication
-                run: ./gradlew publishAndroidPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+                run: ./gradlew publishAndroidReleasePublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
             -
                 name: Build JS Publication
                 run: ./gradlew publishJsPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
@@ -66,6 +66,7 @@ jobs:
                     ./gradlew
                     publishKotlinMultiplatformPublicationToMavenCentralRepository
                     publishJvmPublicationToMavenCentralRepository
+                    publishAndroidReleasePublicationToMavenCentralRepository
                     publishJsPublicationToMavenCentralRepository
                     -Pversion=${GITHUB_TAG/refs\/tags\//}
     linux:
