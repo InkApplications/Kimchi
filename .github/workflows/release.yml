@@ -39,6 +39,9 @@ jobs:
                 name: Build JVM Publication
                 run: ./gradlew publishJvmPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
             -
+                name: Build Android Publication
+                run: ./gradlew publishAndroidPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
+            -
                 name: Build JS Publication
                 run: ./gradlew publishJsPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
             -
