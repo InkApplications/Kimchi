@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+2.0.1
+-----
+
+# Fixed
+
+ - Fixed a publication issue in the Android platform module.
+
 2.0.0
 -----
 
