@@ -23,5 +23,5 @@ version = "7.3.0"
 module = "com.android.tools.build:gradle"
 
 [libraries.ink-publishing]
-version = "1.0.0"
+version = "1.0.1"
 module = "com.inkapplications.publishing:ink-publishing"
