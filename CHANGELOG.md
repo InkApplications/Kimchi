@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2.0.2
+-----
+
+ - Fix to add Android debug publication for logger module.
+
 2.0.1
 -----
 
