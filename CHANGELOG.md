@@ -1,9 +1,16 @@
 Change Log
 ==========
 
+2.0.3
+-----
+
+# Fixed
+ - Fix for JS IR support
+
 2.0.2
 -----
 
+# Fixed
  - Fix to add Android debug publication for logger module.
 
 2.0.1

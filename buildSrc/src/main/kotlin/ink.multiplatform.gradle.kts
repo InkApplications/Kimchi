@@ -32,7 +32,7 @@ kotlin {
 
     mingwX64()
 
-    js {
+    js(BOTH) {
         nodejs()
         browser()
     }
