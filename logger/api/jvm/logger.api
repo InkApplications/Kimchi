@@ -1,0 +1,117 @@
+public final class kimchi/logger/CompositeLogWriter : kimchi/logger/LogWriter {
+	public fun <init> (Ljava/util/Set;)V
+	public final fun getWriters ()Ljava/util/Set;
+	public fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public final class kimchi/logger/ConsolidatedLogger : kimchi/logger/KimchiLogger {
+	public fun <init> (Lkimchi/logger/LogWriter;)V
+	public fun debug (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun debug (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun error (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun info (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun trace (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun trace (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun warn (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class kimchi/logger/DefaultLogWriterKt {
+	public static final fun getDefaultWriter ()Lkimchi/logger/LogWriter;
+}
+
+public final class kimchi/logger/EmptyLogger : kimchi/logger/KimchiLogger {
+	public static final field INSTANCE Lkimchi/logger/EmptyLogger;
+	public fun debug (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun debug (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun error (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun info (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun trace (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun trace (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun warn (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class kimchi/logger/EmptyWriter : kimchi/logger/LogWriter {
+	public static final field INSTANCE Lkimchi/logger/EmptyWriter;
+	public fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public abstract interface class kimchi/logger/KimchiLogger {
+	public abstract fun debug (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun debug (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public abstract fun error (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public abstract fun info (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun info (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public abstract fun trace (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun trace (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public abstract fun warn (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun warn (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class kimchi/logger/KimchiLogger$DefaultImpls {
+	public static synthetic fun debug$default (Lkimchi/logger/KimchiLogger;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun debug$default (Lkimchi/logger/KimchiLogger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun error$default (Lkimchi/logger/KimchiLogger;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun error$default (Lkimchi/logger/KimchiLogger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun info$default (Lkimchi/logger/KimchiLogger;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun info$default (Lkimchi/logger/KimchiLogger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun trace$default (Lkimchi/logger/KimchiLogger;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun trace$default (Lkimchi/logger/KimchiLogger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun warn$default (Lkimchi/logger/KimchiLogger;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun warn$default (Lkimchi/logger/KimchiLogger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+}
+
+public final class kimchi/logger/LogLevel : java/lang/Enum {
+	public static final field DEBUG Lkimchi/logger/LogLevel;
+	public static final field ERROR Lkimchi/logger/LogLevel;
+	public static final field INFO Lkimchi/logger/LogLevel;
+	public static final field TRACE Lkimchi/logger/LogLevel;
+	public static final field WARNING Lkimchi/logger/LogLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lkimchi/logger/LogLevel;
+	public static fun values ()[Lkimchi/logger/LogLevel;
+}
+
+public abstract interface class kimchi/logger/LogWriter {
+	public abstract fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public abstract fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public final class kimchi/logger/LogWriter$DefaultImpls {
+	public static synthetic fun log$default (Lkimchi/logger/LogWriter;Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public static synthetic fun shouldLog$default (Lkimchi/logger/LogWriter;Lkimchi/logger/LogLevel;Ljava/lang/Throwable;ILjava/lang/Object;)Z
+}
+
+public final class kimchi/logger/MutableLogWriters : kimchi/logger/LogWriter {
+	public fun <init> ()V
+	public final fun add (Lkimchi/logger/LogWriter;)V
+	public final fun clear ()V
+	public fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public final fun remove (Lkimchi/logger/LogWriter;)V
+	public fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public final class kimchi/logger/StandardWriter : kimchi/logger/LogWriter {
+	public static final field INSTANCE Lkimchi/logger/StandardWriter;
+	public fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public final class kimchi/logger/ThresholdWriter : kimchi/logger/LogWriter {
+	public fun <init> (Lkimchi/logger/LogLevel;Lkimchi/logger/LogWriter;)V
+	public fun log (Lkimchi/logger/LogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun shouldLog (Lkimchi/logger/LogLevel;Ljava/lang/Throwable;)Z
+}
+
+public final class kimchi/logger/ThresholdWriterKt {
+	public static final fun withThreshold (Lkimchi/logger/LogWriter;Lkimchi/logger/LogLevel;)Lkimchi/logger/ThresholdWriter;
+}
+

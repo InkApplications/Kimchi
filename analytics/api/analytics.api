@@ -1,0 +1,127 @@
+public abstract interface class kimchi/analytics/AnalyticsWriter {
+	public abstract fun writeEvent (Ljava/lang/String;Ljava/util/List;)V
+	public abstract fun writeProperties (Ljava/util/List;)V
+	public abstract fun writeScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public final class kimchi/analytics/CompositeAnalyticsWriter : kimchi/analytics/AnalyticsWriter {
+	public fun <init> (Ljava/util/Set;)V
+	public final fun getWriters ()Ljava/util/Set;
+	public fun writeEvent (Ljava/lang/String;Ljava/util/List;)V
+	public fun writeProperties (Ljava/util/List;)V
+	public fun writeScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public final class kimchi/analytics/ConsolidatedAnalytics : kimchi/analytics/KimchiAnalytics {
+	public fun <init> (Lkimchi/analytics/AnalyticsWriter;)V
+	public fun setProperties (Ljava/util/List;)V
+	public fun setProperty (Lkimchi/analytics/Property;)V
+	public fun trackEvent (Ljava/lang/String;Ljava/util/List;)V
+	public fun trackScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public abstract interface class kimchi/analytics/KimchiAnalytics {
+	public abstract fun setProperties (Ljava/util/List;)V
+	public abstract fun setProperty (Lkimchi/analytics/Property;)V
+	public abstract fun trackEvent (Ljava/lang/String;Ljava/util/List;)V
+	public abstract fun trackScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public final class kimchi/analytics/KimchiAnalytics$DefaultImpls {
+	public static synthetic fun trackEvent$default (Lkimchi/analytics/KimchiAnalytics;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)V
+	public static synthetic fun trackScreen$default (Lkimchi/analytics/KimchiAnalytics;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)V
+}
+
+public final class kimchi/analytics/MutableAnalyticsWriters : kimchi/analytics/AnalyticsWriter {
+	public fun <init> ()V
+	public final fun add (Lkimchi/analytics/AnalyticsWriter;)V
+	public final fun clear ()V
+	public final fun remove (Lkimchi/analytics/AnalyticsWriter;)V
+	public fun writeEvent (Ljava/lang/String;Ljava/util/List;)V
+	public fun writeProperties (Ljava/util/List;)V
+	public fun writeScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+
+public abstract class kimchi/analytics/Property {
+	public abstract fun getKey ()Ljava/lang/String;
+	public abstract fun getValue ()Ljava/lang/Object;
+}
+
+public final class kimchi/analytics/Property$DoubleProperty : kimchi/analytics/Property {
+	public fun <init> (Ljava/lang/String;D)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()D
+	public final fun copy (Ljava/lang/String;D)Lkimchi/analytics/Property$DoubleProperty;
+	public static synthetic fun copy$default (Lkimchi/analytics/Property$DoubleProperty;Ljava/lang/String;DILjava/lang/Object;)Lkimchi/analytics/Property$DoubleProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun getValue ()Ljava/lang/Double;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kimchi/analytics/Property$FloatProperty : kimchi/analytics/Property {
+	public fun <init> (Ljava/lang/String;F)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()F
+	public final fun copy (Ljava/lang/String;F)Lkimchi/analytics/Property$FloatProperty;
+	public static synthetic fun copy$default (Lkimchi/analytics/Property$FloatProperty;Ljava/lang/String;FILjava/lang/Object;)Lkimchi/analytics/Property$FloatProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun getValue ()Ljava/lang/Float;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kimchi/analytics/Property$IntProperty : kimchi/analytics/Property {
+	public fun <init> (Ljava/lang/String;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun copy (Ljava/lang/String;I)Lkimchi/analytics/Property$IntProperty;
+	public static synthetic fun copy$default (Lkimchi/analytics/Property$IntProperty;Ljava/lang/String;IILjava/lang/Object;)Lkimchi/analytics/Property$IntProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kimchi/analytics/Property$LongProperty : kimchi/analytics/Property {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Lkimchi/analytics/Property$LongProperty;
+	public static synthetic fun copy$default (Lkimchi/analytics/Property$LongProperty;Ljava/lang/String;JILjava/lang/Object;)Lkimchi/analytics/Property$LongProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun getValue ()Ljava/lang/Long;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kimchi/analytics/Property$StringProperty : kimchi/analytics/Property {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lkimchi/analytics/Property$StringProperty;
+	public static synthetic fun copy$default (Lkimchi/analytics/Property$StringProperty;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lkimchi/analytics/Property$StringProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kimchi/analytics/PropertyKt {
+	public static final fun doubleProperty (Ljava/lang/String;D)Lkimchi/analytics/Property$DoubleProperty;
+	public static final fun floatProperty (Ljava/lang/String;F)Lkimchi/analytics/Property$FloatProperty;
+	public static final fun intProperty (Ljava/lang/String;I)Lkimchi/analytics/Property$IntProperty;
+	public static final fun longProperty (Ljava/lang/String;J)Lkimchi/analytics/Property$LongProperty;
+	public static final fun stringProperty (Ljava/lang/String;Ljava/lang/String;)Lkimchi/analytics/Property$StringProperty;
+}
+

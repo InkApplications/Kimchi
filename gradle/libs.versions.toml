@@ -25,3 +25,7 @@ module = "com.android.tools.build:gradle"
 [libraries.dokka]
 version = "1.9.10"
 module = "org.jetbrains.dokka:dokka-gradle-plugin"
+
+[libraries.kotlinx-binary-compatibility]
+version = "0.13.2"
+module = "org.jetbrains.kotlinx:binary-compatibility-validator"

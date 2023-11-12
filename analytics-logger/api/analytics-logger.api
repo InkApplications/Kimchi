@@ -1,0 +1,7 @@
+public final class kimchi/analytics/logger/LogAnalyticsWriter : kimchi/analytics/AnalyticsWriter {
+	public fun <init> (Lkimchi/logger/KimchiLogger;)V
+	public fun writeEvent (Ljava/lang/String;Ljava/util/List;)V
+	public fun writeProperties (Ljava/util/List;)V
+	public fun writeScreen (Ljava/lang/String;Ljava/util/List;)V
+}
+

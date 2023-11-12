@@ -1,0 +1,27 @@
+public final class kimchi/Kimchi : kimchi/analytics/KimchiAnalytics, kimchi/logger/KimchiLogger {
+	public static final field INSTANCE Lkimchi/Kimchi;
+	public final fun addAnalytics (Lkimchi/analytics/AnalyticsWriter;)V
+	public final fun addLog (Lkimchi/logger/LogWriter;)V
+	public final fun clear ()V
+	public fun debug (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun debug (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun error (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun info (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun info (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public final fun removeAnalytics (Lkimchi/analytics/AnalyticsWriter;)V
+	public final fun removeLog (Lkimchi/logger/LogWriter;)V
+	public fun setProperties (Ljava/util/List;)V
+	public fun setProperty (Lkimchi/analytics/Property;)V
+	public fun trace (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun trace (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+	public fun trackEvent (Ljava/lang/String;Ljava/util/List;)V
+	public fun trackScreen (Ljava/lang/String;Ljava/util/List;)V
+	public fun warn (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun warn (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class kimchi/LogAnalyticsWriterKt {
+	public static final fun getKimchiLoggerAnalytics ()Lkimchi/analytics/AnalyticsWriter;
+}
+
