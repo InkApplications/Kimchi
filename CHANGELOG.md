@@ -4,29 +4,31 @@ Change Log
 2.1.0
 -----
 
-# Changed
+### Added
+- Added all 3 Native [Tiers] for platform targets
+
+### Changed
 
 - Updated to Kotlin 1.9
-- Added all 3 Native [Tiers] for platform targets
 
 [Tiers]: https://kotlinlang.org/docs/native-target-support.html#tier-1
 
 2.0.3
 -----
 
-# Fixed
+### Fixed
  - Fix for JS IR support
 
 2.0.2
 -----
 
-# Fixed
+### Fixed
  - Fix to add Android debug publication for logger module.
 
 2.0.1
 -----
 
-# Fixed
+### Fixed
 
  - Fixed a publication issue in the Android platform module.
 
@@ -37,7 +39,7 @@ This major release is because the platform list has changed. The list of
 supported platforms has expanded, however some linux platforms were removed
 to support an internal dependency change to using KotlinX Coroutines.
 
-# Changed
+### Changed
  - Updated to Kotlin 1.7
  - Updated Supported Platforms:
      - jvm
