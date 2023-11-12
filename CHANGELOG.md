@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+2.1.0
+-----
+
+# Changed
+
+- Updated to Kotlin 1.9
+- Added all 3 Native [Tiers] for platform targets
+
+[Tiers]: https://kotlinlang.org/docs/native-target-support.html#tier-1
+
 2.0.3
 -----
 

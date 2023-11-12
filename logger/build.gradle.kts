@@ -1,20 +1,16 @@
 plugins {
-    id("ink.multiplatform")
+    id("multiplatform.tier3")
     id("com.android.library")
-    id("com.inkapplications.publishing")
+    id("ink.publishing")
 }
 
 android {
-    compileSdkVersion(33)
-    lintOptions {
-        tasks.lint {
-            enabled = false
-        }
-    }
+    compileSdk = 34
+    namespace = "com.inkapplications.kimchi.logger"
 }
 
 kotlin {
-    android {
+    androidTarget {
         publishAllLibraryVariants()
     }
 
@@ -32,7 +28,7 @@ kotlin {
             }
         }
 
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.kotlin.test.core)
                 implementation(libs.kotlin.test.junit)
