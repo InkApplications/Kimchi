@@ -1,7 +1,7 @@
 name: Release
 on:
-  push:
-    tags: ['*']
+    push:
+        tags: ['*']
 env:
     GITHUB_TAG: ${{ github.ref }}
 jobs:
@@ -15,12 +15,12 @@ jobs:
                 name: Configure Java
                 uses: actions/setup-java@v2
                 with:
-                    java-version: 11
+                    java-version: 17
                     distribution: adopt-openj9
             -
-                name: JVM Tests
-                run: ./gradlew jvmTest
-    common:
+                name: Tests
+                run: ./gradlew check
+    linux:
         runs-on: ubuntu-latest
         steps:
             -
@@ -30,29 +30,8 @@ jobs:
                 name: Configure Java
                 uses: actions/setup-java@v2
                 with:
-                    java-version: 11
+                    java-version: 17
                     distribution: adopt-openj9
-            -
-                name: Build Metadata Publication
-                run: ./gradlew publishKotlinMultiplatformPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
-            -
-                name: Build JVM Publication
-                run: ./gradlew publishJvmPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
-            -
-                name: Build Android Publication
-                run: ./gradlew publishAndroidReleasePublicationToBuildRepository publishAndroidDebugPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
-            -
-                name: Build JS Publication
-                run: ./gradlew publishJsPublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
-            -
-                name: Zip All Publications
-                run: ./gradlew zipPublications
-            -
-                name: Archive
-                uses: actions/upload-artifact@v2
-                with:
-                    name: Common Publications
-                    path: build/distributions/publications.zip
             -
                 name: Maven Publish
                 env:
@@ -65,87 +44,16 @@ jobs:
                 run: >
                     ./gradlew
                     publishKotlinMultiplatformPublicationToMavenCentralRepository
-                    publishJvmPublicationToMavenCentralRepository
-                    publishAndroidReleasePublicationToMavenCentralRepository
-                    publishAndroidDebugPublicationToMavenCentralRepository
-                    publishJsPublicationToMavenCentralRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-    linux:
-        runs-on: ubuntu-latest
-        steps:
-            -
-                name: Checkout
-                uses: actions/checkout@v2.3.4
-            -
-                name: Configure Java
-                uses: actions/setup-java@v2
-                with:
-                    java-version: 11
-                    distribution: adopt-openj9
-            -
-                name: Build Linux x64 Publication
-                run: ./gradlew publishLinuxX64PublicationToBuildRepository -Pversion=${GITHUB_TAG/refs\/tags\//}
-            -
-                name: Zip All Publications
-                run: ./gradlew zipPublications
-            -
-                name: Archive
-                uses: actions/upload-artifact@v2
-                with:
-                    name: Linux Publications
-                    path: build/distributions/publications.zip
-            -
-                name: Maven Publish
-                env:
-                    GITHUB_TAG: ${{ github.ref }}
-                    ORG_GRADLE_PROJECT_mavenUser: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-                    ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-                    ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.PGP_INK_CI_KEYID }}
-                    ORG_GRADLE_PROJECT_signingKey: ${{ secrets.PGP_INK_CI_PRIVATE }}
-                    ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PGP_INK_CI_PASSWORD }}
-                run: >
-                    ./gradlew
                     publishLinuxX64PublicationToMavenCentralRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-    windows:
-        runs-on: windows-latest
-        steps:
-            -
-                name: Checkout
-                uses: actions/checkout@v2.3.4
-            -
-                name: Configure Java
-                uses: actions/setup-java@v2
-                with:
-                    java-version: 11
-                    distribution: adopt-openj9
-            -
-                name: Build Windows X64 Publication
-                run: ./gradlew publishMingwX64PublicationToBuildRepository --project-prop version=${GITHUB_TAG/refs\/tags\//}
-                shell: bash
-            -
-                name: Zip All Publications
-                run: ./gradlew zipPublications
-            -
-                name: Archive
-                uses: actions/upload-artifact@v2
-                with:
-                    name: Windows Publications
-                    path: build/distributions/publications.zip
-            -
-                name: Maven Publish
-                env:
-                    GITHUB_TAG: ${{ github.ref }}
-                    ORG_GRADLE_PROJECT_mavenUser: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-                    ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-                    ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.PGP_INK_CI_KEYID }}
-                    ORG_GRADLE_PROJECT_signingKey: ${{ secrets.PGP_INK_CI_PRIVATE }}
-                    ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PGP_INK_CI_PASSWORD }}
-                shell: bash
-                run: >
-                    ./gradlew
+                    publishLinuxArm64PublicationToMavenCentralRepository
+                    publishAndroidNativeArm32PublicationToMavenCentralRepository
+                    publishAndroidNativeArm64PublicationToMavenCentralRepository
+                    publishAndroidNativeX86PublicationToMavenCentralRepository
+                    publishAndroidNativeX64PublicationToMavenCentralRepository
+                    publishJsPublicationToMavenCentralRepository
+                    publishJvmPublicationToMavenCentralRepository
                     publishMingwX64PublicationToMavenCentralRepository
-                    --project-prop version=${GITHUB_TAG/refs\/tags\//}
+                    -Pversion=${GITHUB_TAG/refs\/tags\//}
     macos:
         runs-on: macos-latest
         steps:
@@ -156,55 +64,8 @@ jobs:
                 name: Configure Java
                 uses: actions/setup-java@v2
                 with:
-                    java-version: 11
+                    java-version: 17
                     distribution: adopt-openj9
-            -
-                name: Build iOS Publication
-                run: >
-                    ./gradlew
-                    publishIosArm32PublicationToBuildRepository
-                    publishIosArm64PublicationToBuildRepository
-                    publishIosX64PublicationToBuildRepository
-                    publishIosSimulatorArm64PublicationToBuildRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-
-            -
-                name: Build watchOS Publication
-                run: >
-                    ./gradlew
-                    publishWatchosArm32PublicationToBuildRepository
-                    publishWatchosArm64PublicationToBuildRepository
-                    publishWatchosX86PublicationToBuildRepository
-                    publishWatchosX64PublicationToBuildRepository
-                    publishWatchosSimulatorArm64PublicationToBuildRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-
-            -
-                name: Build tvOS Publication
-                run: >
-                    ./gradlew
-                    publishTvosArm64PublicationToBuildRepository
-                    publishTvosX64PublicationToBuildRepository
-                    publishTvosSimulatorArm64PublicationToBuildRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-
-            -
-                name: Build MacOS Publication
-                run: >
-                    ./gradlew
-                    publishMacosX64PublicationToBuildRepository
-                    publishMacosArm64PublicationToBuildRepository
-                    -Pversion=${GITHUB_TAG/refs\/tags\//}
-
-            -
-                name: Zip All Publications
-                run: ./gradlew zipPublications
-            -
-                name: Archive
-                uses: actions/upload-artifact@v2
-                with:
-                    name: MacOS Publications
-                    path: build/distributions/publications.zip
             -
                 name: Maven Publish
                 env:
@@ -216,18 +77,17 @@ jobs:
                     ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PGP_INK_CI_PASSWORD }}
                 run: >
                     ./gradlew
-                    publishIosArm32PublicationToMavenCentralRepository
-                    publishIosArm64PublicationToMavenCentralRepository
-                    publishIosX64PublicationToMavenCentralRepository
-                    publishIosSimulatorArm64PublicationToMavenCentralRepository
-                    publishWatchosArm32PublicationToMavenCentralRepository
-                    publishWatchosArm64PublicationToMavenCentralRepository
-                    publishWatchosX86PublicationToMavenCentralRepository
-                    publishWatchosX64PublicationToMavenCentralRepository
-                    publishWatchosSimulatorArm64PublicationToMavenCentralRepository
-                    publishTvosArm64PublicationToMavenCentralRepository
-                    publishTvosX64PublicationToMavenCentralRepository
-                    publishTvosSimulatorArm64PublicationToMavenCentralRepository
                     publishMacosX64PublicationToMavenCentralRepository
                     publishMacosArm64PublicationToMavenCentralRepository
+                    publishIosSimulatorArm64PublicationToMavenCentralRepository
+                    publishIosX64PublicationToMavenCentralRepository
+                    publishWatchosSimulatorArm64PublicationToMavenCentralRepository
+                    publishWatchosX64PublicationToMavenCentralRepository
+                    publishWatchosArm32PublicationToMavenCentralRepository
+                    publishWatchosArm64PublicationToMavenCentralRepository
+                    publishTvosSimulatorArm64PublicationToMavenCentralRepository
+                    publishTvosX64PublicationToMavenCentralRepository
+                    publishTvosArm64PublicationToMavenCentralRepository
+                    publishIosArm64PublicationToMavenCentralRepository
+                    publishWatchosDeviceArm64PublicationToMavenCentralRepository
                     -Pversion=${GITHUB_TAG/refs\/tags\//}
