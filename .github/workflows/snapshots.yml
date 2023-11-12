@@ -10,5 +10,11 @@ jobs:
                 name: Checkout
                 uses: actions/checkout@v2.3.4
             -
+                name: Configure Java
+                uses: actions/setup-java@v2
+                with:
+                    java-version: 17
+                    distribution: adopt-openj9
+            -
                 name: Tests
                 run: ./gradlew check
