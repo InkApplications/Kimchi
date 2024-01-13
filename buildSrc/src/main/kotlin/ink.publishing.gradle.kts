@@ -32,9 +32,9 @@ publishing {
         withType<MavenPublication> {
             artifact(javadocJar)
             pom {
-                name.set("Regolith: ${project.name}")
-                description.set("General purpose application interfaces")
-                url.set("https://github.com/InkApplications/Regolith")
+                name.set("Kimchi: ${project.name}")
+                description.set("Kotlin Multiplatform Logging and Analytics")
+                url.set("https://github.com/InkApplications/Kimchi")
                 licenses {
                     license {
                         name.set("MIT")
@@ -49,9 +49,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/InkApplications/regolith.git")
-                    developerConnection.set("scm:git:ssh://git@github.com:InkApplications/regolith.git")
-                    url.set("https://github.com/InkApplications/regolith")
+                    connection.set("scm:git:https://github.com/InkApplications/Kimchi.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:InkApplications/Kimchi.git")
+                    url.set("https://github.com/InkApplications/Kimchi")
                 }
             }
         }
