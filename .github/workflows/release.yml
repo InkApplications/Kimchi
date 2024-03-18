@@ -13,7 +13,7 @@ jobs:
                 uses: actions/checkout@v4.1.1
             -
                 name: Configure Java
-                uses: actions/setup-java@v4.1.0
+                uses: actions/setup-java@v4.2.1
                 with:
                     java-version: 17
                     distribution: oracle
@@ -28,7 +28,7 @@ jobs:
                 uses: actions/checkout@v4.1.1
             -
                 name: Configure Java
-                uses: actions/setup-java@v4.1.0
+                uses: actions/setup-java@v4.2.1
                 with:
                     java-version: 17
                     distribution: oracle
@@ -64,7 +64,7 @@ jobs:
                 uses: actions/checkout@v4.1.1
             -
                 name: Configure Java
-                uses: actions/setup-java@v4.1.0
+                uses: actions/setup-java@v4.2.1
                 with:
                     java-version: 17
                     distribution: oracle
