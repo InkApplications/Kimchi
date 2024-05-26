@@ -6,6 +6,11 @@ repositories {
     mavenCentral()
     google()
 }
+
+kotlin {
+    jvmToolchain(11)
+}
+
 dependencies {
     implementation(libs.kotlin.gradle)
     implementation(libs.android.gradle)
