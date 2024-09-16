@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.0.10"
-coroutines = "1.8.1"
+coroutines = "1.9.0"
 
 [libraries.kotlin-gradle]
 version.ref = "kotlin"
